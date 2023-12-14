@@ -2,7 +2,7 @@
 //  npm install iost minimist
 //  ## 1.1 如果装不上就是使用 npm --registry https://registry.npm.taobao.org install iost minimist
 //  #2 执行脚本
-//  node index.js --accountName 你的账号  --privateKey 你的私钥
+//  node index.js --accountName 你的账号  --privateKey 你的私钥 --limit 铭刻次数
 var argv = require('minimist')(process.argv.slice(2));
 const bs58 = require('bs58')
 const IOST = require('iost')
@@ -45,17 +45,18 @@ async function main() {
 
             // let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, accountName, amount, ""]);
             // let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, 'deadaddr', amount, "IOST"]);
-            // tx.addApprove('iost', amount)
-            // iost.signAndSend(tx)
-            //     .on('pending', (resp) => {
-            //         console.log('tx pending: ' + JSON.stringify(resp))
-            //     })
-            //     .on('success', (resp) => {
-            //         console.log('tx success: ' + JSON.stringify(resp.tx_hash))
-            //     })
-            //     .on('failed', (resp) => {
-            //         console.log('tx failed: ' + JSON.stringify(resp))
-            //     })
+            let tx = iost.callABI("Contract6vU3ZWL57jQeFpbuqUxQfL5PGeFJekWrDG2WVGjWqrKx", "mint", ["IOSI","1000"])
+            tx.addApprove('iost', amount)
+            iost.signAndSend(tx)
+                .on('pending', (resp) => {
+                    console.log('tx pending: ' + JSON.stringify(resp))
+                })
+                .on('success', (resp) => {
+                    console.log('tx success: ' + JSON.stringify(resp.tx_hash))
+                })
+                .on('failed', (resp) => {
+                    console.log('tx failed: ' + JSON.stringify(resp))
+                })
         } catch (error) {
             console.log("err", error)
         }
