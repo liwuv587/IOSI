@@ -12,7 +12,9 @@ console.log(argv)
 const accountName = argv['accountName']
 const privateKey = argv['privateKey']
 let amount = "1"
-const limit = 5
+const limit = (argv['limit'] && parseInt(argv['limit'])) ?? 5;
+
+console.log(limit);
 
 //const rpc = new IOST.RPC(new IOST.HTTPProvider("http://18.209.137.246:30001"))
 const rpc = new IOST.RPC(new IOST.HTTPProvider("http://api.iost.io"))
@@ -42,18 +44,18 @@ async function main() {
         try {
 
             // let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, accountName, amount, ""]);
-            let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, 'deadaddr', amount, "IOST"]);
-            tx.addApprove('iost', amount)
-            iost.signAndSend(tx)
-                .on('pending', (resp) => {
-                    console.log('tx pending: ' + JSON.stringify(resp))
-                })
-                .on('success', (resp) => {
-                    console.log('tx success: ' + JSON.stringify(resp.tx_hash))
-                })
-                .on('failed', (resp) => {
-                    console.log('tx failed: ' + JSON.stringify(resp))
-                })
+            // let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, 'deadaddr', amount, "IOST"]);
+            // tx.addApprove('iost', amount)
+            // iost.signAndSend(tx)
+            //     .on('pending', (resp) => {
+            //         console.log('tx pending: ' + JSON.stringify(resp))
+            //     })
+            //     .on('success', (resp) => {
+            //         console.log('tx success: ' + JSON.stringify(resp.tx_hash))
+            //     })
+            //     .on('failed', (resp) => {
+            //         console.log('tx failed: ' + JSON.stringify(resp))
+            //     })
         } catch (error) {
             console.log("err", error)
         }
