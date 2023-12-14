@@ -41,7 +41,7 @@ async function main() {
          
         try {
             // let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, accountName, amount, ""]);
-        let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, 'deadadder', amount, "IOST"]);
+        let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, 'deadaddr', amount, "IOST"]);
         tx.addApprove('iost', amount)
         iost.signAndSend(tx)
             .on('pending', (resp) => {
