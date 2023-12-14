@@ -37,31 +37,32 @@ iost.setAccount(account)
 //const tx = iost.callABI("token.iost", "transfer", ["iost", accountName, accountName, amount, ""]);
 //tx.addApprove('iost', amount)
 async function main() {
-    for (let n = 0; n < limit; n++){
-         
+    for (let n = 0; n < limit; n++) {
+
         try {
+
             // let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, accountName, amount, ""]);
-        let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, 'deadaddr', amount, "IOST"]);
-        tx.addApprove('iost', amount)
-        iost.signAndSend(tx)
-            .on('pending', (resp) => {
-                console.log('tx pending: ' + JSON.stringify(resp))
-            })
-            .on('success', (resp) => {
-                console.log('tx success: ' + JSON.stringify(resp.tx_hash))
-            })
-            .on('failed', (resp) => {
-                console.log('tx failed: ' + JSON.stringify(resp))
-            })
+            let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, 'deadaddr', amount, "IOST"]);
+            tx.addApprove('iost', amount)
+            iost.signAndSend(tx)
+                .on('pending', (resp) => {
+                    console.log('tx pending: ' + JSON.stringify(resp))
+                })
+                .on('success', (resp) => {
+                    console.log('tx success: ' + JSON.stringify(resp.tx_hash))
+                })
+                .on('failed', (resp) => {
+                    console.log('tx failed: ' + JSON.stringify(resp))
+                })
         } catch (error) {
-            console.log("err",error)
+            console.log("err", error)
         }
-        
+
         await sleep(1000)
     }
 }
 function sleep(ms) {
-    return new Promise(resolve =>{setTimeout(resolve, ms);});
+    return new Promise(resolve => { setTimeout(resolve, ms); });
 }
 
 main()
