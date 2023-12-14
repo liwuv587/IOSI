@@ -16,8 +16,9 @@ const limit = (argv['limit'] && parseInt(argv['limit'])) ?? 5;
 
 console.log(limit);
 
-const rpc = new IOST.RPC(new IOST.HTTPProvider("http://18.209.137.246:30001"))
+//const rpc = new IOST.RPC(new IOST.HTTPProvider("http://18.209.137.246:30001"))
 // const rpc = new IOST.RPC(new IOST.HTTPProvider("http://api.iost.io"))
+const rpc = new IOST.RPC(new IOST.HTTPProvider("http://54.180.196.80:30001"))
 //rpc.blockchain.getChainInfo().then(console.log)
 
 
@@ -45,7 +46,7 @@ async function main() {
 
             // let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, accountName, amount, ""]);
             // let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, 'deadaddr', amount, "IOST"]); 
-            let tx = iost.callABI("Contract6vU3ZWL57jQeFpbuqUxQfL5PGeFJekWrDG2WVGjWqrKx", "mint", ["IOSI","1000"])
+            let tx = iost.callABI("Contracthf98toAqPxSrz3vQK6m3X69VW9ubAUwx2Whp2jbnDyD", "mint", ["robot","1000"])
             tx.addApprove('iost', amount)
             iost.signAndSend(tx)
                 .on('pending', (resp) => {
