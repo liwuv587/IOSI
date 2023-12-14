@@ -38,7 +38,10 @@ iost.setAccount(account)
 //tx.addApprove('iost', amount)
 async function main() {
     for (let n = 0; n < limit; n++){
-        let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, 'deadadder', amount, ""]);
+         
+        try {
+            // let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, accountName, amount, ""]);
+        let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, 'deadadder', amount, "IOST"]);
         tx.addApprove('iost', amount)
         iost.signAndSend(tx)
             .on('pending', (resp) => {
@@ -50,6 +53,10 @@ async function main() {
             .on('failed', (resp) => {
                 console.log('tx failed: ' + JSON.stringify(resp))
             })
+        } catch (error) {
+            console.log("err",error)
+        }
+        
         await sleep(1000)
     }
 }
