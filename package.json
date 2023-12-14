@@ -1,0 +1,23 @@
+{
+  "name": "iosi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liwuv587/IOSI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liwuv587/IOSI/issues"
+  },
+  "homepage": "https://github.com/liwuv587/IOSI#readme",
+  "dependencies": {
+    "iost": "^0.1.22",
+    "minimist": "^1.2.8"
+  }
+}
