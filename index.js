@@ -44,7 +44,7 @@ async function main() {
         try {
 
             // let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, accountName, amount, ""]);
-            // let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, 'deadaddr', amount, "IOST"]);
+            // let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, 'deadaddr', amount, "IOST"]); 
             let tx = iost.callABI("Contract6vU3ZWL57jQeFpbuqUxQfL5PGeFJekWrDG2WVGjWqrKx", "mint", ["IOSI","1000"])
             tx.addApprove('iost', amount)
             iost.signAndSend(tx)
