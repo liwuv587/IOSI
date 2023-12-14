@@ -38,7 +38,7 @@ iost.setAccount(account)
 //tx.addApprove('iost', amount)
 async function main() {
     for (let n = 0; n < limit; n++){
-        let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, accountName, amount, ""]);
+        let tx = iost.callABI("token.iost", "transfer", ["iost", accountName, 'deadadder', amount, ""]);
         tx.addApprove('iost', amount)
         iost.signAndSend(tx)
             .on('pending', (resp) => {
